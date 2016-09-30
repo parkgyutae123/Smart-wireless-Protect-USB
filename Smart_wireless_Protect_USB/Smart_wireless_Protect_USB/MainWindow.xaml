@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button>
+        <Button Content="규태형 뀨뀨뀨" FontSize="30" Margin="140,95,122.4,104.8">
             
         </Button>
     </Grid>
