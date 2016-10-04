@@ -7,26 +7,22 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
-namespace Smart_wireless_Protect_USB
+namespace Smart_wireless_Protect_USB.View
 {
     /// <summary>
-    /// MainWindow.xaml에 대한 상호 작용 논리
+    /// DeviceAndUserRegView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow:Window
+    public partial class DeviceAndUserRegView : UserControl
     {
-        public MainWindow()
+        public DeviceAndUserRegView()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
-
     }
 }
