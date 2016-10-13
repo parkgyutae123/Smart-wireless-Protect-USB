@@ -7,6 +7,9 @@ using System.Web;
 
 namespace Service
 {
+    /// <summary>
+    /// DB클래스 입니다.
+    /// </summary>
      class Project_DB
     {
         static string  conStr = @"Data Source=IS-LAB21\MGKIM1030;Initial Catalog = Smart Wireless Protect Key DB";
@@ -26,6 +29,11 @@ namespace Service
         #endregion
 
         #region 아이디 중복검사
+        /// <summary>
+        /// 아이디 중복검사 DB쿼리입니다.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool OverlapID(string id)
         {
             string sql = "SELECT ID FROM USER";
@@ -54,6 +62,11 @@ namespace Service
         #endregion
 
         #region 휴대폰 번호 중복검사
+        /// <summary>
+        /// 휴대폰 번호 중복검사 DB쿼리입니다.
+        /// </summary>
+        /// <param name="pnum"></param>
+        /// <returns></returns>
         public bool OverlapPhoneNum(string pnum)
         {
             string sql = "SELECT PH_NUM FROM USER";
@@ -82,6 +95,15 @@ namespace Service
         #endregion
 
         #region 회원가입
+        /// <summary>
+        /// 회원가입 DB쿼리입니다. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pw"></param>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <param name="pnum"></param>
+        /// <returns></returns>
         public bool JoinMember(string id,string pw,string name, string email,string pnum)
         {
             if (OverlapID(id)==false || OverlapPhoneNum(pnum)==false)
@@ -109,7 +131,11 @@ namespace Service
         #endregion
 
         #region 로그인 아이디 불일치
-
+        /// <summary>
+        /// 로그인 아이디 불일치 쿼리 입니다.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool LoginIDCheck(string id)
         {
             string sql = "SELECT ID FROM USER";
@@ -137,7 +163,11 @@ namespace Service
         #endregion
 
         #region 로그인 비밀번호 불일치
-
+        /// <summary>
+        /// 로그인 비밀번호 불일치 쿼리입니다. 
+        /// </summary>
+        /// <param name="pw"></param>
+        /// <returns></returns>
         public bool LoginPWCheck(string pw)
         {
             string sql = "SELECT PW FROM USER";
@@ -165,6 +195,12 @@ namespace Service
         #endregion
 
         #region 로그인
+        /// <summary>
+        /// 로그인 DB쿼리 입니다.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pw"></param>
+        /// <returns></returns>
         public bool LoginIDPWCheck(string id,string pw)
         {
             if(LoginIDCheck(id) == true||LoginPWCheck(pw)==true)
