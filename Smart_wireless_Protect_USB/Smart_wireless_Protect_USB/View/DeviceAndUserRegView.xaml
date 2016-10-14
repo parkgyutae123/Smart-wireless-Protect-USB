@@ -8,7 +8,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Smart_wireless_Protect_USB.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             
+             d:DesignHeight="300" d:DesignWidth="450">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,23 +19,76 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style TargetType="{x:Type Viewbox}">
+                <Setter Property="Width" Value="18" />
+                <Setter Property="Height" Value="18" />
+                <Setter Property="Margin" Value="0 0 8 0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MaterialDesignSlider}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+            </Style>
+            <Style TargetType="{x:Type materialDesign:PackIcon}" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="4 0 4 0" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Margin="15">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" 
+				 x:Name="NameTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
+                 materialDesign:HintAssist.Hint="Name"
+				    />
+
+        <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
         <TextBox Grid.Row="1" Grid.Column="1" 
-				    x:Name="NameTextBox"
-				    materialDesign:HintAssist.Hint="Name">
-            <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <domain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 20 8 0" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton">
-            등록
+				 x:Name="PhoneTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
+                 materialDesign:HintAssist.Hint="Phone"
+				    />
+
+        <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Email"  Foreground="{Binding ElementName=EmailTextBox, Path=BorderBrush}" />
+        <TextBox Grid.Row="2" Grid.Column="1" 
+				 x:Name="EmailTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
+                 materialDesign:HintAssist.Hint="Email"
+				    />
+        <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
+        <PasswordBox Grid.Row="3" Grid.Column="1" 		
+                     x:Name="PasswordBox"
+                     materialDesign:HintAssist.Hint="Password" />
+        <Button Grid.Row="4" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="9,1,77,1"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Grid.Column="1">
+            등 록
         </Button>
-    </StackPanel>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="79,6,0,5"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton">
+            취 소
+        </Button>
+
+    </Grid>
 </UserControl>
