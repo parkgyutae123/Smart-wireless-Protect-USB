@@ -7,11 +7,11 @@ using System.Windows;
 // 어셈블리에 대한 일반 정보는 다음 특성 집합을 통해 
 // 제어됩니다. 어셈블리와 관련된 정보를 수정하려면
 // 이러한 특성 값을 변경하세요.
-[assembly: AssemblyTitle("TestProgram")]
+[assembly: AssemblyTitle("LockTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TestProgram")]
+[assembly: AssemblyProduct("LockTest")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,12 +32,12 @@ using System.Windows;
 
 
 [assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //테마별 리소스 사전의 위치
-                                     //(페이지, 앱 또는 모든 테마별 리소스 사전에 
-                                     // 리소스가 없는 경우에 사용됨)
-    ResourceDictionaryLocation.SourceAssembly //제네릭 리소스 사전의 위치
-                                              //(페이지, 앱 또는 모든 테마별 리소스 사전에 
-                                              // 리소스가 없는 경우에 사용됨)
+	ResourceDictionaryLocation.None, //테마별 리소스 사전의 위치
+									 //(페이지, 앱 또는 모든 테마별 리소스 사전에 
+									 // 리소스가 없는 경우에 사용됨)
+	ResourceDictionaryLocation.SourceAssembly //제네릭 리소스 사전의 위치
+											  //(페이지, 앱 또는 모든 테마별 리소스 사전에 
+											  // 리소스가 없는 경우에 사용됨)
 )]
 
 

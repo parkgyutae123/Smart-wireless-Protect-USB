@@ -1,0 +1,30 @@
+﻿<Window x:Class="LockTest2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LockTest2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="184.39" Width="424.268">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280*"/>
+            <ColumnDefinition Width="137*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Label>Password : </Label>
+                <TextBox Name="tb_pw" Width="200"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Button x:Name="button" Content="Lock" HorizontalAlignment="Left" Margin="32.785,45,0,0" VerticalAlignment="Top" Width="79" Height="56" Grid.Column="1" Click="button_Click"/>
+
+    </Grid>
+</Window>

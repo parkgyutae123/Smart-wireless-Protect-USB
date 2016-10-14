@@ -6,12 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace TestProgram
+namespace LockTest2
 {
-    /// <summary>
-    /// App.xaml에 대한 상호 작용 논리
-    /// </summary>
-    public partial class App : Application
-    {
-    }
+	/// <summary>
+	/// App.xaml에 대한 상호 작용 논리
+	/// </summary>
+	public partial class App : Application
+	{
+
+	}
 }
