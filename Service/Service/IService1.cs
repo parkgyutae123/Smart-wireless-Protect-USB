@@ -12,36 +12,22 @@ namespace Service
     [ServiceContract]   //지시자는 아라에 인터페이스가 계약에 사용된다는 것을 알린다.
     public interface IService1
     {
+        [OperationContract]
+        bool OverlapID(string id);
 
         [OperationContract]
-        string GetData(int value);
+        bool OverlapPhoneNum(string pnum);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        bool JoinMember(string id, string pw, string name, string email, string pnum);
 
-        // TODO: 여기에 서비스 작업을 추가합니다.
-    }
+        [OperationContract]
+        bool LoginIDCheck(string id);
 
+        [OperationContract]
+        bool LoginPWCheck(string pw);
 
-    // 아래 샘플에 나타낸 것처럼 데이터 계약을 사용하여 복합 형식을 서비스 작업에 추가합니다.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        [OperationContract]
+        bool LoginIDPWCheck(string id, string pw);
     }
 }
