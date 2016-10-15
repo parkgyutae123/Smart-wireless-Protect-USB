@@ -145,9 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\ICON.GIF" />
+    <Folder Include="Resource\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="lock.ico" />
