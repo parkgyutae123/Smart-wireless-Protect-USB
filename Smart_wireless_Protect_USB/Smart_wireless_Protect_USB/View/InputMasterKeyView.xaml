@@ -30,10 +30,10 @@
             <materialDesign:DialogHost IsOpen="{Binding IsDialogOpen}"
                                        DialogContent="{Binding DialogContent}"
                                        CloseOnClickAway="True">
-                <Button Command="{Binding RunDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">폰 인증</Button>
+                <Button Command="{Binding RunPhoneDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">폰 인증</Button>
             </materialDesign:DialogHost>
             
-            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">이메일 인증</Button>
+            <Button Command="{Binding RunEmailDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">이메일 인증</Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

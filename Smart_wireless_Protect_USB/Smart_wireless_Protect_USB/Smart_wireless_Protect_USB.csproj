@@ -92,6 +92,9 @@
     <Compile Include="View\DeviceAndUserRegView.xaml.cs">
       <DependentUpon>DeviceAndUserRegView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\InputEmailDialog.xaml.cs">
+      <DependentUpon>InputEmailDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InputMasterKeyView.xaml.cs">
       <DependentUpon>InputMasterKeyView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DeviceAndUserRegView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InputEmailDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

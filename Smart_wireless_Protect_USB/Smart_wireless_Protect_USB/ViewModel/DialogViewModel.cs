@@ -1,15 +1,9 @@
 ﻿using MahMaterialDragablzMashUp;
-using MaterialDesignThemes.Wpf;
-using Microsoft.WindowsMobile.PocketOutlook;
 using Smart_wireless_Protect_USB.View;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -18,9 +12,12 @@ namespace Smart_wireless_Protect_USB.ViewModel
 {
     public class DialogViewModel : INotifyPropertyChanged
     {
-        public ICommand RunDialogCommand { get; }
-        public ICommand AcceptDialogCommand { get; }
-        public ICommand CancelDialogCommand { get; }
+        public ICommand RunPhoneDialogCommand { get; }
+        public ICommand AcceptPhoneDialogCommand { get; }
+        public ICommand CancelPhoneDialogCommand { get; }
+        public ICommand RunEmailDialogCommand { get; set; }
+        public ICommand AcceptEmailDialogCommand { get; set; }
+        public ICommand CancelEmailDialogCommand { get; set; }
 
         private bool _isDialogOpen;
         private object _DialogContent;
@@ -30,9 +27,32 @@ namespace Smart_wireless_Protect_USB.ViewModel
         /// </summary>
         public DialogViewModel()
         {
-            RunDialogCommand = new AnotherCommandImplementation(OpenDialog);
-            AcceptDialogCommand = new AnotherCommandImplementation(AcceptDialog);
-            CancelDialogCommand = new AnotherCommandImplementation(CancelDialog);
+            RunPhoneDialogCommand = new AnotherCommandImplementation(OpenPhoneDialog);
+            AcceptPhoneDialogCommand = new AnotherCommandImplementation(AcceptPhoneDialog);
+            CancelPhoneDialogCommand = new AnotherCommandImplementation(CancelPhoneDialog);
+
+            RunEmailDialogCommand = new AnotherCommandImplementation(OpenEmailDialog);
+            AcceptEmailDialogCommand = new AnotherCommandImplementation(AcceptEmailDialog);
+            CancelEmailDialogCommand = new AnotherCommandImplementation(CancelEmailDialog);
+        }
+
+        private void CancelEmailDialog(object obj)
+        {
+            IsDialogOpen = false;
+        }
+
+        private void AcceptEmailDialog(object obj)
+        {
+            DialogContent = new ProgressDialog();
+            System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(3))
+                .ContinueWith((t, _) => IsDialogOpen = false, null,
+                    TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private void OpenEmailDialog(object obj)
+        {
+            DialogContent = new InputEmailDialog();
+            IsDialogOpen = true;
         }
 
         public bool IsDialogOpen
@@ -58,12 +78,12 @@ namespace Smart_wireless_Protect_USB.ViewModel
         }
 
 
-        private void CancelDialog(object obj)
+        private void CancelPhoneDialog(object obj)
         {
             IsDialogOpen = false;
         }
 
-        private void AcceptDialog(object obj)
+        private void AcceptPhoneDialog(object obj)
         {
             string url = @"https://api.bluehouselab.com/smscenter/v1.0.1/sendsms";
             string appid = "usblock";
@@ -99,43 +119,11 @@ namespace Smart_wireless_Protect_USB.ViewModel
                     TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private void OpenDialog(object obj)
+        private void OpenPhoneDialog(object obj)
         {
             DialogContent = new InputPhoneNumberDialog();
             IsDialogOpen = true;
         }
-
-        //public ICommand RunDialogCommand => new AnotherCommandImplementation(ExecuteRunExtendedDialog);
-
-        //private async void ExecuteRunExtendedDialog(object obj)
-        //{
-        //    var view = new InputPhoneNumberDialog();
-
-        //    var result = await DialogHost.Show(view,ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
-
-        //}
-
-        //private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
-        //{
-        //    Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
-        //}
-
-        //private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
-        //{
-        //    if ((bool)eventArgs.Parameter == false) return;
-
-        //    //OK, lets cancel the close...
-        //    eventArgs.Cancel();
-
-        //    //...now, lets update the "session" with some new content!
-        //    eventArgs.Session.UpdateContent(new ProgressDialog());
-        //    //note, you can also grab the session when the dialog opens via the DialogOpenedEventHandler
-
-        //    //lets run a fake operation for 3 seconds then close this baby.
-        //    Task.Delay(TimeSpan.FromSeconds(2))
-        //        .ContinueWith((t, _) => eventArgs.Session.Close(false), null,
-        //            TaskScheduler.FromCurrentSynchronizationContext());
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
