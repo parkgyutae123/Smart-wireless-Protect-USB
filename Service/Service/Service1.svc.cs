@@ -12,22 +12,38 @@ namespace Service
     // 참고: 이 서비스를 테스트하기 위해 WCF 테스트 클라이언트를 시작하려면 솔루션 탐색기에서Service1.svc나 Service1.svc.cs를 선택하고 디버깅을 시작하십시오.
     public class Service1 : IService1
     {
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
+        Project_DB db = Project_DB.GetInstance();
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+
+        public bool OverlapID(string id)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            bool re = db.OverlapID(id);
+            return re;
+        }
+        public bool OverlapPhoneNum(string pnum)
+        {
+            bool re = db.OverlapPhoneNum(pnum) ;
+            return re;
+        }
+        public bool JoinMember(string id, string pw, string name, string email, string pnum)
+        {
+            bool re = db.JoinMember(id,pw,name,email,pnum);
+            return re;
+        }
+        public bool LoginIDCheck(string id)
+        {
+            bool re = db.LoginIDCheck(id);
+            return re;
+        }
+        public bool LoginPWCheck(string pw)
+        {
+            bool re = db.LoginPWCheck(pw);
+            return re;
+        }
+        public bool LoginIDPWCheck(string id, string pw)
+        {
+            bool re = db.LoginIDPWCheck(id,pw);
+            return re;
         }
     }
 }
