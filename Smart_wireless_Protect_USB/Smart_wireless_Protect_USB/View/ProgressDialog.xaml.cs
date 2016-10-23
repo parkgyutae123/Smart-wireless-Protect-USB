@@ -1,5 +1,4 @@
-﻿using Smart_wireless_Protect_USB.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace Smart_wireless_Protect_USB.View
 {
     /// <summary>
-    /// InputMasterKeyView.xaml에 대한 상호 작용 논리
+    /// ProgressDialog.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class InputMasterKeyView : UserControl
+    public partial class ProgressDialog : UserControl
     {
-        public InputMasterKeyView()
+        public ProgressDialog()
         {
             InitializeComponent();
-            DataContext = new DialogViewModel();
         }
     }
 }

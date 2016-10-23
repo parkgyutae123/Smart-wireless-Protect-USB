@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Smart_wireless_Protect_USB.View"
+             xmlns:viewModel="clr-namespace:Smart_wireless_Protect_USB.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -25,5 +26,14 @@
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
             확인
         </Button>
+        <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+            <materialDesign:DialogHost IsOpen="{Binding IsDialogOpen}"
+                                       DialogContent="{Binding DialogContent}"
+                                       CloseOnClickAway="True">
+                <Button Command="{Binding RunDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">폰 인증</Button>
+            </materialDesign:DialogHost>
+            
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">이메일 인증</Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -6,7 +6,7 @@ namespace Smart_wireless_Protect_USB.ViewModel
     /// <summary>
     /// 입력란이 공백인지 아닌지에 대한 유효성검사
     /// </summary>
-    class NotEmptyValidationRule : ValidationRule
+    public class NotEmptyValidationRule : ValidationRule
     {      
         /// <summary>
         /// 유효성 검사 메서드 오버라이딩
