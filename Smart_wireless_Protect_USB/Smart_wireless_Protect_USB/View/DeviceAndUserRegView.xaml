@@ -46,49 +46,65 @@
     </UserControl.Resources>
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}"/>
-        <TextBox Grid.Row="0" Grid.Column="1" 
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="23*"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" Margin="4,13,0,13"/>
+            <TextBox Grid.Row="0" Grid.Column="1" 
 				 x:Name="NameTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
-                 materialDesign:HintAssist.Hint="Name"
+                 materialDesign:HintAssist.Hint="Name" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
 				    />
-
-        <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
-        <TextBox Grid.Row="1" Grid.Column="1" 
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" Margin="4,13,0,13"/>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+				 x:Name="IDTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
+                 materialDesign:HintAssist.Hint="ID" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
+				    />
+            <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" Margin="4,13,0,13"/>
+            <PasswordBox Grid.Row="2" Grid.Column="1" 		
+                     x:Name="PasswordBox"
+                     materialDesign:HintAssist.Hint="Password" Grid.ColumnSpan="2" Margin="1,8,34.225,8" />
+            <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" Margin="4,13,0,13" />
+            <TextBox Grid.Row="3" Grid.Column="1" 
 				 x:Name="PhoneTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
-                 materialDesign:HintAssist.Hint="Phone"
+                 materialDesign:HintAssist.Hint="Phone" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
 				    />
 
-        <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Email"  Foreground="{Binding ElementName=EmailTextBox, Path=BorderBrush}" />
-        <TextBox Grid.Row="2" Grid.Column="1" 
+            <materialDesign:PackIcon Grid.Row="4" Grid.Column="0" Kind="Email"  Foreground="{Binding ElementName=EmailTextBox, Path=BorderBrush}" Margin="4,13,0,13" />
+            <TextBox Grid.Row="4" Grid.Column="1" 
 				 x:Name="EmailTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
-                 materialDesign:HintAssist.Hint="Email"
+                 materialDesign:HintAssist.Hint="Email" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
 				    />
-        <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
-        <PasswordBox Grid.Row="3" Grid.Column="1" 		
-                     x:Name="PasswordBox"
-                     materialDesign:HintAssist.Hint="Password" />
-        <Button Grid.Row="4" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="9,1,77,1"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Grid.Column="1">
-            등 록
-        </Button>
-        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="79,6,0,5"
+
+        </Grid>
+        <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="5" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
-            취 소
-        </Button>
+                등 록
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="5" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton">
+                취 소
+            </Button>
+        </StackPanel>
 
     </Grid>
 </UserControl>

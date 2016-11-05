@@ -85,7 +85,7 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
         private void AcceptPhoneDialog(object obj)
         {
-            string url = @"https://api.bluehouselab.com/smscenter/v1.0.1/sendsms";
+            string url = @"https://api.bluehouselab.com/smscenter/v1.0/sendsms";
             string appid = "usblock";
             string apikey = "d748be0697a511e6871f0cc47a1fcfae";
 
