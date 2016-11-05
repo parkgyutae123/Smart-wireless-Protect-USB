@@ -97,7 +97,7 @@
         </Grid>
         <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="5" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton">
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Command="{Binding UserRegCommand}">
                 등 록
             </Button>
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="5" Width="100"

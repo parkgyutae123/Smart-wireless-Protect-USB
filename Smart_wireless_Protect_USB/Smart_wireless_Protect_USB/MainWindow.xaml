@@ -11,10 +11,11 @@
         xmlns:local="clr-namespace:Smart_wireless_Protect_USB"
         mc:Ignorable="d"
         Title="Screen Lock" Height="800" Width="1100"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" 
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto"
+        TextOptions.TextRenderingMode="Auto" Topmost="True" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
         >
     <Window.Resources>
         <ResourceDictionary>
@@ -53,7 +54,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" Source="lock.ico" Stretch="Uniform" Width="200" Height="200"/>
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay1TextBlock}" TextWrapping="Wrap" FontSize="56">잠금 화면 상태 입니다.</TextBlock>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay1TextBlock}" TextWrapping="Wrap" FontSize="56" Text="{Binding UserState, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

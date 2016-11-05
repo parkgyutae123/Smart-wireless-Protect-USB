@@ -12,6 +12,9 @@ namespace Smart_wireless_Protect_USB.ViewModel
 {
     public class DialogViewModel : INotifyPropertyChanged
     {
+        public ICommand UserRegCommand { get; set;}
+
+
         public ICommand RunPhoneDialogCommand { get; }
         public ICommand AcceptPhoneDialogCommand { get; }
         public ICommand CancelPhoneDialogCommand { get; }
@@ -27,6 +30,8 @@ namespace Smart_wireless_Protect_USB.ViewModel
         /// </summary>
         public DialogViewModel()
         {
+            UserRegCommand = new AnotherCommandImplementation(UserRegisterCommand); ;
+
             RunPhoneDialogCommand = new AnotherCommandImplementation(OpenPhoneDialog);
             AcceptPhoneDialogCommand = new AnotherCommandImplementation(AcceptPhoneDialog);
             CancelPhoneDialogCommand = new AnotherCommandImplementation(CancelPhoneDialog);
@@ -34,6 +39,16 @@ namespace Smart_wireless_Protect_USB.ViewModel
             RunEmailDialogCommand = new AnotherCommandImplementation(OpenEmailDialog);
             AcceptEmailDialogCommand = new AnotherCommandImplementation(AcceptEmailDialog);
             CancelEmailDialogCommand = new AnotherCommandImplementation(CancelEmailDialog);
+        }
+        /// <summary>
+        /// 사용자등록
+        /// </summary>
+        /// <param name="obj"></param>
+        private void UserRegisterCommand(object obj)
+        {
+            BluetoothInfo blutooth = new BluetoothInfo();
+            string device = blutooth.GetPeerDeviceName;
+            MessageBox.Show(device);
         }
 
         private void CancelEmailDialog(object obj)
@@ -90,10 +105,7 @@ namespace Smart_wireless_Protect_USB.ViewModel
             string apikey = "d748be0697a511e6871f0cc47a1fcfae";
 
             
-            string json = @"{
-                ""sender"":""01091617111"",
-                ""receivers"":[""01091617111""],
-                ""content"": ""인증 테스트""}";
+            string json = "{\"sender\":\"01091617111\",\"receivers\":[\"01091617111\"],\"content\":\"TEST\"}";
 
             WebClient client = new WebClient();
            
