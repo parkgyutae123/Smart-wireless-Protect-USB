@@ -53,63 +53,57 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="20"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <materialDesign:Card Margin="5" Background="#03a9F4" Padding="0" Width="200" Grid.Column="0" Grid.Row="0">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">사용자 등록</TextBlock>
-                        <Separator Grid.Row="1"/>
-                        <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody1TextBlock}">아래 버튼을 누르세요.</TextBlock>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
-                            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding ShowRegFlyoutCommand}">
-                                <materialDesign:PackIcon Kind="AccountPlus" />
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                </materialDesign:Card>
-                <materialDesign:Card Margin="5" Background="#03a9F4" Padding="0" Width="200" Grid.Column="0" Grid.Row="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Margin="16 16 16 4" Style="{StaticResource MaterialDesignHeadlineTextBlock}">USB 분실</TextBlock>
-                        <Separator Grid.Row="1"/>
-                        <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody1TextBlock}">아래 버튼을 누르세요.</TextBlock>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
-                            <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding ShowLossFlyoutCommand}">
-                                <materialDesign:PackIcon Kind="KeyVariant" />
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                </materialDesign:Card>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Grid.Row="2" HorizontalAlignment="Center"
-                        Margin="10" Width="80" Height="80"
-                        ToolTip="MaterialDesignFloatingActionMiniDarkButton">
-                    <materialDesign:PackIcon Kind="Help" Height="30" Width="30" />
-                </Button>
+            <Image Grid.Column="0" Source="lock.ico" Stretch="Uniform" Width="200" Height="200"/>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource MaterialDesignDisplay1TextBlock}" TextWrapping="Wrap" FontSize="56" Text="{Binding UserState, Mode=TwoWay}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:Card Grid.Column="0" Margin="120 10 30 10">
+                <Grid VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.RowSpan="4" VerticalAlignment="Stretch" Command="{Binding ShowRegFlyoutCommand}">
+                        <materialDesign:PackIcon Kind="AccountPlus" Height="154" Width="190"/>
+                    </Button>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="16 16 16 2">사용자 등록</TextBlock>
+                    <TextBlock FontSize="20" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="26 0 26 18" Foreground="{DynamicResource MaterialDesignBodyLight}"
+                               VerticalAlignment="Center">
+                          이 프로그램을 처음 사용하시거나 분실후 새로 등록하시는 경우에는 왼쪽 등록 버튼을 눌러 사용자 등록을
+                        해주시기 바람니다.
+                    </TextBlock>
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="1" Margin="30 10 120 10">
+                <Grid VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.RowSpan="2" VerticalAlignment="Stretch" Command="{Binding ShowLossFlyoutCommand}">
+                        <materialDesign:PackIcon Kind="AccountKey" Height="154" Width="190"/>
+                    </Button>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="16 16 16 2">USB / Key 분실</TextBlock>
+                    <TextBlock FontSize="20" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Margin="26 0 26 18" Foreground="{DynamicResource MaterialDesignBodyLight}"
+                               VerticalAlignment="Center">
+                          이 프로그램에 등록된 USB 혹은 Key(스마트 폰)을 분실했을 시 휴대폰 인증과 이메일 인증 후 부여받은 Master Key를 입력하여 Lock Screen을 풀어주세요.
+                    </TextBlock>
+                </Grid>
+            </materialDesign:Card>
 
         </Grid>
 

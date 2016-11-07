@@ -98,6 +98,12 @@
       <DependentUpon>LcokSettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendMail.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="TrayIconViewModel.cs" />
     <Compile Include="ViewModel\DialogViewModel.cs" />
     <Compile Include="ViewModel\NotEmptyValidationRule.cs" />
     <Compile Include="View\DeviceAndUserRegView.xaml.cs">

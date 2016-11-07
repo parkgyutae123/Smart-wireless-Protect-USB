@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Smart_wireless_Protect_USB.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,9 +16,9 @@ namespace Smart_wireless_Protect_USB.View
             DataContext = new DialogViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if(client.JoinMember(NameTextBox.Text, PasswordBox.Password, NameTextBox.Text, EmailTextBox.Text, PhoneTextBox.Text))
+            if (client.JoinMember(IDTextBox.Text, PasswordBox.Password, NameTextBox.Text, EmailTextBox.Text, PhoneTextBox.Text))
             {
                 MessageBox.Show("성공");return;
             }

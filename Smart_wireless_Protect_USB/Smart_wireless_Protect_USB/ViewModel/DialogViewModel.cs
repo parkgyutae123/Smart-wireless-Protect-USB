@@ -6,58 +6,21 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-
 
 namespace Smart_wireless_Protect_USB.ViewModel
 {
     public class DialogViewModel : INotifyPropertyChanged
     {
+        public ICommand UserRegCommand { get; set;}
+
+
         public ICommand RunPhoneDialogCommand { get; }
         public ICommand AcceptPhoneDialogCommand { get; }
         public ICommand CancelPhoneDialogCommand { get; }
         public ICommand RunEmailDialogCommand { get; set; }
         public ICommand AcceptEmailDialogCommand { get; set; }
         public ICommand CancelEmailDialogCommand { get; set; }
-
-        public String _memberName;
-        public String MemberName
-        {
-            get
-            {
-                return _memberName;
-            }
-            set
-            {
-                _memberName = value;
-            }
-        }
-        public String _memberPhone;
-        public String MemberPhone
-        {
-            get
-            {
-                return _memberPhone;
-            }
-            set
-            {
-                _memberPhone = value;
-            }
-        }
-        public String _memberEmail;
-        public String MemberEmail
-        {
-            get
-            {
-                return _memberEmail;
-            }
-            set
-            {
-                _memberEmail = value;
-            }
-        }
-        public ICommand _Button_Clicked_JoinMember { get; set; }
 
         private bool _isDialogOpen;
         private object _DialogContent;
@@ -72,7 +35,7 @@ namespace Smart_wireless_Protect_USB.ViewModel
             RunPhoneDialogCommand = new AnotherCommandImplementation(OpenPhoneDialog);
             AcceptPhoneDialogCommand = new AnotherCommandImplementation(AcceptPhoneDialog);
             CancelPhoneDialogCommand = new AnotherCommandImplementation(CancelPhoneDialog);
-            _Button_Clicked_JoinMember = new AnotherCommandImplementation(JoinMemberDialog);
+
             RunEmailDialogCommand = new AnotherCommandImplementation(OpenEmailDialog);
             AcceptEmailDialogCommand = new AnotherCommandImplementation(AcceptEmailDialog);
             CancelEmailDialogCommand = new AnotherCommandImplementation(CancelEmailDialog);
@@ -88,18 +51,6 @@ namespace Smart_wireless_Protect_USB.ViewModel
             MessageBox.Show(device);
         }
 
-        private void JoinMemberDialog(object obj)
-        {
-            var passwordBox = obj as PasswordBox;
-            var password = passwordBox.Password;
-            if(JoinMember(MemberName, password, MemberName, MemberEmail, MemberPhone))
-            {
-                MessageBox.Show("성공");return;
-            }
-            MessageBox.Show("실패");
-
-        }
-
         private void CancelEmailDialog(object obj)
         {
             IsDialogOpen = false;
@@ -107,7 +58,6 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
         private void AcceptEmailDialog(object obj)
         {
-
             DialogContent = new ProgressDialog();
             System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(3))
                 .ContinueWith((t, _) => IsDialogOpen = false, null,
@@ -197,14 +147,5 @@ namespace Smart_wireless_Protect_USB.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
-        #region JoinMember(string name, string pw, string email. string pnum)
-        public bool JoinMember(string id, string pw, string name, string email, string pnum)
-        {
-            bool re = client.JoinMember(id,pw,name,email,pnum);
-            return re;
-        }
-        #endregion
     }
 }
