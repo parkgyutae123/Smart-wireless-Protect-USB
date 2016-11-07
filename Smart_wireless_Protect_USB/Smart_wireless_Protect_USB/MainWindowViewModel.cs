@@ -1,5 +1,7 @@
 ﻿using MahMaterialDragablzMashUp;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,53 +10,87 @@ namespace Smart_wireless_Protect_USB
     /// <summary>
     /// MainWindow와의 상호작용
     /// </summary>
-    class MainWindowViewModel
+    class MainWindowViewModel: INotifyPropertyChanged
     {
-        public ICommand ShowRegFlyoutCommand { get; }//사용자등록 컨트롤을 띄우는 커맨드 프로퍼티
-        public ICommand ShowLossFlyoutCommand { get; set; }//분실경우 마스터키를 입력하는 페이지를 띄우는 커맨드 프로퍼티
-        public ICommand ShowHelpFlyoutCommand { get; set; }//도움말의 컨트롤을 띄우는 커맨드 프로퍼티
-
+        private string _userState="잠금화면 입니다.";
         /// <summary>
-        /// ViewModel 생성자
+        /// 사용자 잠금화면 문구 프로퍼티
         /// </summary>
-        public MainWindowViewModel()
+        public String UserState
         {
-            ShowRegFlyoutCommand = new AnotherCommandImplementation(_ => ShowRigthRegFlyout());
-            ShowLossFlyoutCommand = new AnotherCommandImplementation(_ => ShowRigthLossFlyout());
-            ShowHelpFlyoutCommand = new AnotherCommandImplementation(_ => ShowHelpFlyout());
+            get { return _userState; }
+            set
+            {
+                if (value == _userState)
+                {
+                    return;
+                }
+                _userState = value;
+                OnPropertyChanged("UserState");
+            }
         }
 
-        /// <summary>
-        /// 트래이아이콘에서 윈도우 창을 띄우기 위한 커맨드 프로퍼티
-        /// </summary>
-        public ICommand ShowWindowCommand
+        public void SettingSave()
+        {
+            OnPropertyChanged("UserState");
+        }
+
+      /// <summary>
+      /// 설정창 확인버튼 커맨드
+      /// </summary>
+        public ICommand SettingSaveCommand
         {
             get
             {
                 return new DelegateCommand
                 {
-                    CanExecuteFunc = () => Application.Current.MainWindow == null,
                     CommandAction = () =>
                     {
-                        Application.Current.MainWindow = new MainWindow();
-                        Application.Current.MainWindow.Show();
+                        OnPropertyChanged("UserState");
+                        Application.Current.MainWindow.Close();
                     }
                 };
             }
         }
 
+        public ICommand ShowRegFlyoutCommand { get; }//사용자등록 컨트롤을 띄우는 커맨드 프로퍼티
+        public ICommand ShowLossFlyoutCommand { get; set; }//분실경우 마스터키를 입력하는 페이지를 띄우는 커맨드 프로퍼티
+        public ICommand ShowHelpFlyoutCommand { get; set; }//도움말의 컨트롤을 띄우는 커맨드 프로퍼티
+
+        static MainWindowViewModel _SingleMainViewModel;
         /// <summary>
-        /// 잠금화면 닫는 커맨드 프로퍼티
+        /// ViewModel 생성자
         /// </summary>
-        public ICommand ExitApplicationCommand
+        protected MainWindowViewModel()
         {
-            get
+            ShowRegFlyoutCommand = new AnotherCommandImplementation(_ => ShowRigthRegFlyout());
+            ShowLossFlyoutCommand = new AnotherCommandImplementation(_ => ShowRigthLossFlyout());
+            ShowHelpFlyoutCommand = new AnotherCommandImplementation(_ => ShowHelpFlyout());
+        }
+        /// <summary>
+        /// 싱글톤
+        /// </summary>
+        /// <returns></returns>
+        public static MainWindowViewModel SingleMainViewModel()
+        {
+            if(_SingleMainViewModel == null)
             {
-                return new DelegateCommand { CommandAction = () => Application.Current.Shutdown() };
+                 _SingleMainViewModel = new MainWindowViewModel();
+                
             }
+            return _SingleMainViewModel;
         }
 
-        
+       
+        //INotifyProperty 구현
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
         /// <summary>
         /// 사용자등록 컨트롤을 띄우기위한 메서드
         /// </summary>

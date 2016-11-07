@@ -19,7 +19,7 @@ namespace Smart_wireless_Protect_USB
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            MainWindowViewModel.SingleMainViewModel();
             notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
         }
 

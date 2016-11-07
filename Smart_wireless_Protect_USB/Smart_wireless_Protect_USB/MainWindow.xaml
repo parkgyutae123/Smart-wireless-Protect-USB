@@ -11,14 +11,19 @@
         xmlns:local="clr-namespace:Smart_wireless_Protect_USB"
         mc:Ignorable="d"
         Title="Screen Lock" Height="800" Width="1100"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" 
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto"
+        TextOptions.TextRenderingMode="Auto" Topmost="True" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
         >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <!-- throw in some extra colour for our floating action button -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
@@ -26,25 +31,27 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <controls:FlyoutsControl Grid.ColumnSpan="2">
-            <controls:Flyout x:Name="RightRegFlyout" Position="Right" Header="사용자 등록" wpf:FlyoutAssist.HeaderColorMode="Accent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <controls:FlyoutsControl Grid.RowSpan="3">
+            <controls:Flyout x:Name="RightRegFlyout" Position="Bottom" Header="사용자 등록" wpf:FlyoutAssist.HeaderColorMode="Accent">
                 <View:DeviceAndUserRegView/>
             </controls:Flyout>
-            <controls:Flyout x:Name="RightLossFlyout" Position="Right" Header="사용자 등록" wpf:FlyoutAssist.HeaderColorMode="Accent">
+            <controls:Flyout x:Name="RightLossFlyout" Position="Bottom" Header="마스터 키 입력" wpf:FlyoutAssist.HeaderColorMode="Accent">
                 <View:InputMasterKeyView/>
             </controls:Flyout>
             <controls:Flyout x:Name="CenterHelpFlyout" Position="Bottom" Header="도움말" wpf:FlyoutAssist.HeaderColorMode="Accent">
-                
+
             </controls:Flyout>
         </controls:FlyoutsControl>
-        <Grid Grid.Column="0">
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="15"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -74,7 +81,7 @@
                         <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody1TextBlock}">아래 버튼을 누르세요.</TextBlock>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
                             <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding ShowRegFlyoutCommand}" VerticalAlignment="Top">
+                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding ShowRegFlyoutCommand}">
                                 <materialDesign:PackIcon Kind="AccountPlus" />
                             </Button>
                         </StackPanel>
@@ -104,9 +111,9 @@
                     <materialDesign:PackIcon Kind="Help" Height="30" Width="30" />
                 </Button>
 
-            </Grid>
-
         </Grid>
+
+        
     </Grid>
 
 </Window>

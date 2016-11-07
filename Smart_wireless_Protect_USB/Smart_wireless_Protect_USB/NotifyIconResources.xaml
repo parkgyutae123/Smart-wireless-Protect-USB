@@ -1,10 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:tb="http://www.hardcodet.net/taskbar"
-                    xmlns:local="clr-namespace:Smart_wireless_Protect_USB">
+                    xmlns:local="clr-namespace:Smart_wireless_Protect_USB"
+                    
+                    >
     <ContextMenu x:Shared="false" x:Key="SysTrayMenu">
-        <MenuItem Header="Show Window" Command="{Binding ShowWindowCommand}" />
-        <MenuItem Header="Hide Window" Command="{Binding HideWindowCommand}" />
+        <MenuItem Header="잠금화면 열기" Command="{Binding ShowWindowCommand}" />
+        <MenuItem Header="설정" Command="{Binding ShowSettingWindowCommand}" />
         <Separator />
         <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
@@ -19,7 +21,7 @@
 
         <!-- self-assign a data context (could also be done programmatically) -->
         <tb:TaskbarIcon.DataContext>
-            <local:MainWindowViewModel />
+            <local:TrayIconViewModel/>
         </tb:TaskbarIcon.DataContext>
     </tb:TaskbarIcon>
 </ResourceDictionary>

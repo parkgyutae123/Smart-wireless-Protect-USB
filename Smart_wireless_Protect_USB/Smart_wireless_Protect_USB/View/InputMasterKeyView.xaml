@@ -17,23 +17,35 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Margin="15">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="18" VerticalAlignment="Center">Key : </TextBlock>
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="18" MinWidth="120" />
-        </StackPanel>
-        <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 20 8 0" Width="100"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock FontSize="18" VerticalAlignment="Center">Key :</TextBlock>
+                <TextBox Margin="10 0 0 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="18" MinWidth="200" />
+            </StackPanel>
+            <Button Grid.Column="1" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="15" Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedLightButton">
-            확인
-        </Button>
-        <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
-            <materialDesign:DialogHost IsOpen="{Binding IsDialogOpen}"
+                확인
+            </Button>
+        </StackPanel>
+        <Grid Grid.Column="3" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <materialDesign:DialogHost IsOpen="{Binding IsDialogOpen}"
                                        DialogContent="{Binding DialogContent}"
                                        CloseOnClickAway="True">
-                <Button Command="{Binding RunPhoneDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">폰 인증</Button>
-            </materialDesign:DialogHost>
-            
-            <Button Command="{Binding RunEmailDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">이메일 인증</Button>
-        </StackPanel>
-    </StackPanel>
+                    <Button Command="{Binding RunPhoneDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">폰 인증</Button>
+                </materialDesign:DialogHost>
+
+                <Button Command="{Binding RunEmailDialogCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="10">이메일 인증</Button>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
 </UserControl>
