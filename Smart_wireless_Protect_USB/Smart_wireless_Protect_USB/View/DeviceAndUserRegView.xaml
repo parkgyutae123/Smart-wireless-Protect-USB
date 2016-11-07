@@ -62,6 +62,7 @@
 				 x:Name="NameTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
                  materialDesign:HintAssist.Hint="Name"
+                 Text="{Binding memberName}"
 				    />
 
         <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Phone" Foreground="{Binding ElementName=PhoneTextBox, Path=BorderBrush}" />
@@ -69,6 +70,7 @@
 				 x:Name="PhoneTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
                  materialDesign:HintAssist.Hint="Phone"
+                 Text="{Binding memberPhone}"
 				    />
 
         <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Email"  Foreground="{Binding ElementName=EmailTextBox, Path=BorderBrush}" />
@@ -76,13 +78,16 @@
 				 x:Name="EmailTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
                  materialDesign:HintAssist.Hint="Email"
+                 Text="{Binding memberEmail}"
 				    />
         <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="Key" Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
         <PasswordBox Grid.Row="3" Grid.Column="1" 		
                      x:Name="PasswordBox"
-                     materialDesign:HintAssist.Hint="Password" />
-        <Button Grid.Row="4" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="9,1,77,1"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Grid.Column="1">
+                     materialDesign:HintAssist.Hint="Password"
+                     
+                     />
+        <Button Grid.Row="4" Style="{StaticResource MaterialDesignRaisedLightButton}" Command="{Binding Button_Clicked_JoinMember}" CommandParameter="{Binding ElementName=PasswordBox}" Margin="9,1,77,1"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Grid.Column="1" Click="Button_Click">
             등 록
         </Button>
         <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="79,6,0,5"

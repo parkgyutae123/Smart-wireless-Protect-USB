@@ -74,7 +74,7 @@
                         <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody1TextBlock}">아래 버튼을 누르세요.</TextBlock>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="16 0 16 8" HorizontalAlignment="Right">
                             <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Width="30" Padding="2 0 2 0"
-                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding ShowRegFlyoutCommand}">
+                            materialDesign:RippleAssist.IsCentered="True" Command="{Binding ShowRegFlyoutCommand}" VerticalAlignment="Top">
                                 <materialDesign:PackIcon Kind="AccountPlus" />
                             </Button>
                         </StackPanel>

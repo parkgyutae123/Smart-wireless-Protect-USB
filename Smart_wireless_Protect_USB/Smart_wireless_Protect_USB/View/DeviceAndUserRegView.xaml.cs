@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Smart_wireless_Protect_USB.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace Smart_wireless_Protect_USB.View
     /// </summary>
     public partial class DeviceAndUserRegView : UserControl
     {
+        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
         public DeviceAndUserRegView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(client.JoinMember(NameTextBox.Text, PasswordBox.Password, NameTextBox.Text, EmailTextBox.Text, PhoneTextBox.Text))
+            {
+                MessageBox.Show("성공");return;
+            }
+            MessageBox.Show("실패");
         }
     }
 }
