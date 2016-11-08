@@ -105,7 +105,7 @@ namespace Smart_wireless_Protect_USB.ViewModel
             string apikey = "d748be0697a511e6871f0cc47a1fcfae";
 
             
-            string json = "{\"sender\":\"01091617111\",\"receivers\":[\"01091617111\"],\"content\":\"TEST\"}";
+            string json = "{\"sender\":\"01091617111\",\"receivers\":[\"01091617111\"],\"content\":\"TEST\"}"; // 회원번호 받고, 텍스트 추가
 
             WebClient client = new WebClient();
            
@@ -133,6 +133,8 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
         private void OpenPhoneDialog(object obj)
         {
+            SendMail sendmail = new SendMail();// 회원에 대한 이메일
+            sendmail.SendGmail;
             DialogContent = new InputPhoneNumberDialog();
             IsDialogOpen = true;
         }
