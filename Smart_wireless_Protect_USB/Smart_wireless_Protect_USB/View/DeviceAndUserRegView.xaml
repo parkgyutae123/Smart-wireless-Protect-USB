@@ -70,7 +70,7 @@
                  materialDesign:TransitionAssist.DisableTransitions="True"
                  materialDesign:HintAssist.Hint="Name" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
 				    />
-            <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=NameTextBox, Path=BorderBrush}" Margin="4,13,0,13"/>
+            <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Account" Foreground="{Binding ElementName=IDTextBox, Path=BorderBrush}" Margin="4,13,0,13"/>
             <TextBox Grid.Row="1" Grid.Column="1" 
 				 x:Name="IDTextBox"				 
                  materialDesign:TransitionAssist.DisableTransitions="True"
@@ -97,7 +97,7 @@
         </Grid>
         <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="5" Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Command="{Binding UserRegCommand}">
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Command="{Binding UserRegCommand}" Click="Button_Click">
                 등 록
             </Button>
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="5" Width="100"

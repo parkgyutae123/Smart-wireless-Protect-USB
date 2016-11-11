@@ -10,9 +10,9 @@ namespace Service
     /// <summary>
     /// DB클래스 입니다.
     /// </summary>
-     class Project_DB
+    class Project_DB
     {
-        static string  conStr = @"Data Source=IS-LAB21\MGKIM1030;Initial Catalog=Smart Wireless Protect Key DB;Persist Security Info=True;User ID=sa;Password=***********";
+        static string conStr = @"Data Source=IS-LAB21\MGKIM1030;Initial Catalog=Smart Wireless Protect Key DB;Integrated Security=False;User ID=sa;Password=1234;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlConnection scon = new SqlConnection(conStr);
 
         #region DB Singleton
@@ -36,28 +36,26 @@ namespace Service
         /// <returns></returns>
         public bool OverlapID(string id)
         {
-            string sql = "SELECT ID FROM USER";
+            string sql = "SELECT * FROM USER_INFO;";
             using (SqlCommand scom = new SqlCommand(sql, scon))
             {
                 scom.Connection.Open();
-                using (SqlDataReader reader = scom.ExecuteReader())
+                SqlDataReader reader = scom.ExecuteReader();
+                if (reader == null)
                 {
-                    if (reader == null)
+                    scom.Connection.Close();
+                    return true;
+                }
+                while (reader.Read())
+                {
+                    if (reader["ID"].Equals(id))
                     {
                         scom.Connection.Close();
-                        return true;
-                    }
-                    while (reader.Read())
-                    {
-                        if (reader["ID"].Equals(id))
-                        {
-                            scom.Connection.Close();
-                            return false;
-                        }
+                        return false;
                     }
                 }
             }
-                return true;
+            return true;
         }
         #endregion
 
@@ -69,9 +67,10 @@ namespace Service
         /// <returns></returns>
         public bool OverlapPhoneNum(string pnum)
         {
-            string sql = "SELECT PH_NUM FROM USER";
+            string sql = "SELECT PH_NUM FROM USER_INFO";
             using (SqlCommand scom = new SqlCommand(sql, scon))
             {
+                scom.Connection.Close();
                 scom.Connection.Open();
                 using (SqlDataReader reader = scom.ExecuteReader())
                 {
@@ -104,27 +103,29 @@ namespace Service
         /// <param name="email"></param>
         /// <param name="pnum"></param>
         /// <returns></returns>
-        public bool JoinMember(string id,string pw,string name, string email,string pnum)
+        public bool JoinMember(string id, string pw, string name, string email, string pnum)
         {
-            if (OverlapID(id)==false || OverlapPhoneNum(pnum)==false)
+            if (OverlapID(id) == false || OverlapPhoneNum(pnum) == false)
             {
                 return false;
             }
-            string sql = "SELECT * FROM USER";
-            SqlDataAdapter da = new SqlDataAdapter(sql,scon);
+            string sql = "SELECT * FROM USER_INFO";
+            SqlDataAdapter da = new SqlDataAdapter(sql, scon);
             SqlCommandBuilder cb = new SqlCommandBuilder(da);
-            DataSet ds = new DataSet("USER");
+            DataSet ds = new DataSet("USER_INFO");
+            da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            da.Fill(ds, "USER_INFO");
 
             DataRow myRow;
-            myRow = ds.Tables["USER"].NewRow();
+            myRow = ds.Tables["USER_INFO"].NewRow();
 
             myRow["ID"] = id;
             myRow["PW"] = pw;
             myRow["NAME"] = name;
             myRow["EMAIL"] = email;
             myRow["PH_NUM"] = pnum;
-            ds.Tables["USER"].Rows.Add(myRow);
-            da.Update(ds,"USER");
+            ds.Tables["USER_INFO"].Rows.Add(myRow);
+            da.Update(ds, "USER_INFO");
             scon.Close();
             return true;
         }
@@ -138,7 +139,7 @@ namespace Service
         /// <returns></returns>
         public bool LoginIDCheck(string id)
         {
-            string sql = "SELECT ID FROM USER";
+            string sql = "SELECT ID FROM USER_INFO";
             using (SqlCommand scom = new SqlCommand(sql, scon))
             {
                 scom.Connection.Open();
@@ -158,7 +159,7 @@ namespace Service
                     //}
                 }
             }
-                return true;
+            return true;
         }
         #endregion
 
@@ -170,7 +171,7 @@ namespace Service
         /// <returns></returns>
         public bool LoginPWCheck(string pw)
         {
-            string sql = "SELECT PW FROM USER";
+            string sql = "SELECT PW FROM USER_INFO";
             using (SqlCommand scom = new SqlCommand(sql, scon))
             {
                 scom.Connection.Open();
@@ -201,11 +202,11 @@ namespace Service
         /// <param name="id"></param>
         /// <param name="pw"></param>
         /// <returns></returns>
-        public bool LoginIDPWCheck(string id,string pw)
+        public bool LoginIDPWCheck(string id, string pw)
         {
-            if(LoginIDCheck(id) == true||LoginPWCheck(pw)==true)
+            if (LoginIDCheck(id) == true || LoginPWCheck(pw) == true)
             {
-                string sql = "SELECT * FROM USER";
+                string sql = "SELECT * FROM USER_INFO";
                 using (SqlCommand scom = new SqlCommand(sql, scon))
                 {
                     scom.Connection.Open();
