@@ -93,6 +93,11 @@
                  materialDesign:TransitionAssist.DisableTransitions="True"
                  materialDesign:HintAssist.Hint="Email" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
 				    />
+            <ComboBox Grid.Row="5" Grid.Column="1" 
+				 x:Name="UsbTextBox"				 
+                 materialDesign:TransitionAssist.DisableTransitions="True"
+                 materialDesign:HintAssist.Hint="DeviceAddress" Grid.ColumnSpan="2" Margin="1,8,34.225,8"
+				    />
 
         </Grid>
         <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">

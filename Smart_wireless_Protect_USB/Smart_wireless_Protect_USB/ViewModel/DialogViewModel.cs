@@ -133,8 +133,8 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
         private void OpenPhoneDialog(object obj)
         {
-            SendMail sendmail = new SendMail();// 회원에 대한 이메일
-            sendmail.SendGmail;
+            
+            
             DialogContent = new InputPhoneNumberDialog();
             IsDialogOpen = true;
         }
