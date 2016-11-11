@@ -21,6 +21,8 @@ namespace Smart_wireless_Protect_USB
             base.OnStartup(e);
             MainWindowViewModel.SingleMainViewModel();
             notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
+            MainWindow m = new Smart_wireless_Protect_USB.MainWindow();
+            m.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)

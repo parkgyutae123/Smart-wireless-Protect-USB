@@ -1,5 +1,6 @@
 ﻿using MahMaterialDragablzMashUp;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -33,11 +34,36 @@ namespace Smart_wireless_Protect_USB
         public void SettingSave()
         {
             OnPropertyChanged("UserState");
+            OnPropertyChanged("Rssi");
+        }
+        /// <summary>
+        /// ItemSource 프로퍼티
+        /// </summary>
+        public ObservableCollection<Int32> RssiContent { get; set; }
+
+        private int _rssi;
+        /// <summary>
+        /// 사용자 잠금화면 거리 프로퍼티
+        /// </summary>
+        public int Rssi
+        {
+            get { return _rssi; }
+            set
+            {
+                if (value == _rssi)
+                {
+                    return;
+                }
+                _rssi = value;
+                OnPropertyChanged("Rssi");
+            }
         }
 
-      /// <summary>
-      /// 설정창 확인버튼 커맨드
-      /// </summary>
+       
+
+        /// <summary>
+        /// 설정창 확인버튼 커맨드
+        /// </summary>
         public ICommand SettingSaveCommand
         {
             get
@@ -63,6 +89,11 @@ namespace Smart_wireless_Protect_USB
         /// </summary>
         protected MainWindowViewModel()
         {
+            RssiContent = new ObservableCollection<int>();
+            RssiContent.Add(5);
+            RssiContent.Add(10);
+            RssiContent.Add(20);
+            RssiContent.Add(50);
             ShowRegFlyoutCommand = new AnotherCommandImplementation(_ => ShowRigthRegFlyout());
             ShowLossFlyoutCommand = new AnotherCommandImplementation(_ => ShowRigthLossFlyout());
             ShowHelpFlyoutCommand = new AnotherCommandImplementation(_ => ShowHelpFlyout());
