@@ -29,5 +29,9 @@ namespace Service
 
         [OperationContract]
         bool LoginIDPWCheck(string id, string pw);
+        [OperationContract]
+        bool CheckNameEmail(string name, string email);
+        [OperationContract]
+        bool CheckNamePhone(string name, string pnum);
     }
 }

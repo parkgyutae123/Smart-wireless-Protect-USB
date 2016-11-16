@@ -45,5 +45,15 @@ namespace Service
             bool re = db.LoginIDPWCheck(id,pw);
             return re;
         }
+        public bool CheckNameEmail(string name, string email)
+        {
+            bool re = db.CheckNameEmail(name,email);
+            return re;
+        }
+        public bool CheckNamePhone(string name, string pnum)
+        {
+            bool re = db.CheckNamePhone(name, pnum);
+            return re;
+        }
     }
 }

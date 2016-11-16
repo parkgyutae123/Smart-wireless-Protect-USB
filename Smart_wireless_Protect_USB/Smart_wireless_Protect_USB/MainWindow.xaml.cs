@@ -26,7 +26,7 @@ namespace Smart_wireless_Protect_USB
 
         protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
         {
-            e.Handled = true;
+            
             if (e.Key == Key.LeftAlt ||
                 e.Key == Key.RightAlt ||
                 e.Key == Key.LeftCtrl ||
@@ -34,6 +34,7 @@ namespace Smart_wireless_Protect_USB
                 e.Key == Key.F4||
                 e.Key == Key.Delete)
             {
+                e.Handled = true;
                 return;
             }
             base.OnKeyDown(e);

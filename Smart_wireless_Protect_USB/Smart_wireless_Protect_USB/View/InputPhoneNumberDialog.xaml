@@ -16,13 +16,15 @@
             <TextBox wpf:HintAssist.Hint="이름을 입력하세요." Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 6 0 0"
                  FontSize="18" 
+                     x:Name="userName"
                  />
             <TextBox wpf:HintAssist.Hint="등록한 휴대폰 번호를 입력하세요." Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 6 0 0"
                  FontSize="18" 
+                     x:Name="phoneNumber"
                  />
         </StackPanel>
-        
+
         <StackPanel Orientation="Horizontal" Grid.Row="1"
                     Margin="0 16 0 0">
             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"

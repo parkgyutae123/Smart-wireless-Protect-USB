@@ -21,14 +21,14 @@
             <TextBox wpf:HintAssist.Hint="등록한 이메일을 입력하세요." Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 6 0 0"
                  FontSize="18" 
-                 x:Name="phoneNumber"
+                 x:Name="emailNumber"
                  />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1"
                     Margin="0 16 0 0">
             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"
-                    Command="{Binding AcceptEmailDialogCommand}">
+                    Command="{Binding AcceptEmailDialogCommand}" >
                 전송
             </Button>
             <Button IsCancel="True" Margin="8 0 0 0" Style="{DynamicResource MaterialDesignFlatButton}"

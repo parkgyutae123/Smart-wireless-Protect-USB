@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -13,6 +14,7 @@ namespace Smart_wireless_Protect_USB.ViewModel
     public class DialogViewModel : INotifyPropertyChanged
     {
         public ICommand UserRegCommand { get; set;}
+        SmartService.Service1Client client = new SmartService.Service1Client();
 
 
         public ICommand RunPhoneDialogCommand { get; }
@@ -58,15 +60,29 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
         private void AcceptEmailDialog(object obj)
         {
+
+            string email;
+            
             DialogContent = new ProgressDialog();
+            
             System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(3))
                 .ContinueWith((t, _) => IsDialogOpen = false, null,
                     TaskScheduler.FromCurrentSynchronizationContext());
+
+            client.CheckNameEmail(inputEmailDialog.userName.Text,inputEmailDialog.emailNumber.Text);
+            
+            email = inputEmailDialog.userName.Text;
+            SendMail S = new SendMail("aksrb1030@naver.com");
+            S.SendGmail();
+
+
+
         }
 
+        InputEmailDialog inputEmailDialog = new InputEmailDialog();
         private void OpenEmailDialog(object obj)
         {
-            DialogContent = new InputEmailDialog();
+            DialogContent = inputEmailDialog;
             IsDialogOpen = true;
         }
 
@@ -98,25 +114,40 @@ namespace Smart_wireless_Protect_USB.ViewModel
             IsDialogOpen = false;
         }
 
+        InputPhoneNumberDialog inputPhoneDialog = new InputPhoneNumberDialog();
         private void AcceptPhoneDialog(object obj)
         {
+            string pnum;
+            
             string url = @"https://api.bluehouselab.com/smscenter/v1.0/sendsms";
             string appid = "usblock";
             string apikey = "d748be0697a511e6871f0cc47a1fcfae";
 
-            
-            string json = "{\"sender\":\"01091617111\",\"receivers\":[\"01091617111\"],\"content\":\"TEST\"}"; // 회원번호 받고, 텍스트 추가
+            string AcceptNum = RandomNum();
+            client.CheckNamePhone(inputPhoneDialog.userName.Text,inputPhoneDialog.phoneNumber.Text);
 
-            WebClient client = new WebClient();
+            pnum = inputPhoneDialog.phoneNumber.Text;
+
+
+            StringBuilder jsonBuilder = new StringBuilder();
+            jsonBuilder.Append("{\"sender\":\"01091617111\",\"receivers\":[\"");
+            jsonBuilder.Append(pnum);
+            jsonBuilder.Append("\"],\"content\":\"");
+            jsonBuilder.Append(AcceptNum);
+            jsonBuilder.Append("\"}");
+            //string json = "{\"sender\":\"01091617111\",\"receivers\":[\"01091617111\"],\"content\":\"TEST\"}"; // 회원번호 받고, 텍스트 추가
+            string json = jsonBuilder.ToString();
+
+            WebClient webclient = new WebClient();
            
             NetworkCredential creds = new NetworkCredential(appid, apikey);
-            client.Credentials = creds;
-            client.Headers[HttpRequestHeader.ContentType] = "application/json; charset=utf-8";
+            webclient.Credentials = creds;
+            webclient.Headers[HttpRequestHeader.ContentType] = "application/json; charset=utf-8";
 
 
             try
             {
-                string response = client.UploadString(url, json);
+                string response = webclient.UploadString(url, json);
                 MessageBox.Show(response);
             }
             catch(WebException e)
@@ -138,7 +169,21 @@ namespace Smart_wireless_Protect_USB.ViewModel
             DialogContent = new InputPhoneNumberDialog();
             IsDialogOpen = true;
         }
-
+        /// <summary>
+        /// 인증번호 생성
+        /// </summary>
+        /// <returns>인증번호</returns>
+        private String RandomNum()
+        {
+            StringBuilder ran = new StringBuilder();
+            Random r = new Random();
+            for (int i = 0; i < 8; i++)
+            {
+                int n = (int)r.Next(1, 10);
+                ran.Append(n.ToString());
+            }
+            return ran.ToString();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

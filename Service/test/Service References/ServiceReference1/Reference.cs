@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Smart_wireless_Protect_USB.SmartService {
+namespace test.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SmartService.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/OverlapID", ReplyAction="http://tempuri.org/IService1/OverlapIDResponse")]
@@ -65,12 +65,12 @@ namespace Smart_wireless_Protect_USB.SmartService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : Smart_wireless_Protect_USB.SmartService.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : test.ServiceReference1.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<Smart_wireless_Protect_USB.SmartService.IService1>, Smart_wireless_Protect_USB.SmartService.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<test.ServiceReference1.IService1>, test.ServiceReference1.IService1 {
         
         public Service1Client() {
         }

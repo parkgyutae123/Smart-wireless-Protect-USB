@@ -151,14 +151,15 @@ namespace Service
                         scom.Connection.Close();
                         return false;
                     }
-                    //while (reader.Read())
-                    //{
-                    //    if (reader["ID"].Equals(id))
-                    //    {
-                    //        return true;
-                    //    }
-                    //}
+                    while (reader.Read())
+                    {
+                        if (reader["ID"].Equals(id))
+                        {
+                            return true;
+                        }
+                    }
                 }
+                scom.Connection.Close();
             }
             return true;
         }
@@ -183,14 +184,15 @@ namespace Service
                         scom.Connection.Close();
                         return false;
                     }
-                    //while (reader.Read())
-                    //{
-                    //    if (reader["ID"].Equals(id))
-                    //    {
-                    //        return true;
-                    //    }
-                    //}
+                    while (reader.Read())
+                    {
+                        if (reader["PW"].Equals(pw))
+                        {
+                            return true;
+                        }
+                    }
                 }
+                scom.Connection.Close();
             }
             return true;
         }
@@ -230,10 +232,89 @@ namespace Service
                             }
                         }
                     }
+                    scom.Connection.Close();
                 }
             }
-            return true;
+            return false;
         }
         #endregion
+
+        #region 이름 이메일 확인
+        /// <summary>
+        /// 이름 이메일 확인 쿼리입니다.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool CheckNameEmail(string name, string email)
+        {
+            string sql = "SELECT NAME,EMAIL FROM USER_INFO";
+            using (SqlCommand scom = new SqlCommand(sql, scon))
+            {
+                scom.Connection.Open();
+                using (SqlDataReader reader = scom.ExecuteReader())
+                {
+                    if (reader == null)
+                    {
+                        scom.Connection.Close();
+                        return false;
+                    }
+                    while (reader.Read())
+                    {
+                        if (reader["NAME"].Equals(name))
+                        {
+                            if (reader["EMAIL"].Equals(email))
+                            {
+                                scom.Connection.Close();
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+                scom.Connection.Close();
+            }
+            return false;
+        }
+        #endregion
+
+
+        #region 이름 휴대폰 확인
+        /// <summary>
+        /// 이름 이메일 확인 쿼리입니다.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool CheckNamePhone(string name, string pnum)
+        {
+            string sql = "SELECT NAME,PH_NUM FROM USER_INFO";
+            using (SqlCommand scom = new SqlCommand(sql, scon))
+            {
+                scom.Connection.Open();
+                using (SqlDataReader reader = scom.ExecuteReader())
+                {
+                    if (reader == null)
+                    {
+                        scom.Connection.Close();
+                        return false;
+                    }
+                    while (reader.Read())
+                    {
+                        if (reader["NAME"].Equals(name))
+                        {
+                            if (reader["PH_NUM"].Equals(pnum))
+                            {
+                                scom.Connection.Close();
+                                return true;
+                            }
+                        }
+                    }
+                }
+                scom.Connection.Close();
+            }
+            return false;
+            #endregion
+        }
     }
 }

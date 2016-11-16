@@ -11,7 +11,7 @@ namespace Smart_wireless_Protect_USB
     {
         String SMTPAddress = "smtp.gmail.com";//STMP서버주소
         String SMTPid = "top1432@gmail.com";//계정 아이디
-        String SMTPpassword = "";//계정 비밀번호
+        String SMTPpassword = "1q2w3e4r!@#$";//계정 비밀번호
         String Tmail = null;//받는사람 메일
 
         String senderID = "USB_Lock";
@@ -64,7 +64,6 @@ namespace Smart_wireless_Protect_USB
                 return ex.ToString();
             }
         }
-
         /// <summary>
         /// 인증번호 생성
         /// </summary>
@@ -80,5 +79,7 @@ namespace Smart_wireless_Protect_USB
             }
             return ran.ToString();
         }
+      
+
     }
 }
