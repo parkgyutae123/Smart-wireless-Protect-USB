@@ -103,7 +103,7 @@ namespace Service
         /// <param name="email"></param>
         /// <param name="pnum"></param>
         /// <returns></returns>
-        public bool JoinMember(string id, string pw, string name, string email, string pnum)
+        public bool JoinMember(string id, string pw, string name, string email, string pnum,string dnum)
         {
             if (OverlapID(id) == false || OverlapPhoneNum(pnum) == false)
             {
@@ -124,6 +124,7 @@ namespace Service
             myRow["NAME"] = name;
             myRow["EMAIL"] = email;
             myRow["PH_NUM"] = pnum;
+            myRow["DeviceNum"] = dnum;
             ds.Tables["USER_INFO"].Rows.Add(myRow);
             da.Update(ds, "USER_INFO");
             scon.Close();
