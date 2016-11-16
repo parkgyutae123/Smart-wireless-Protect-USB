@@ -27,7 +27,7 @@ namespace Service
         }
         public bool JoinMember(string id, string pw, string name, string email, string pnum)
         {
-            bool re = db.JoinMember(id,pw,name,email,pnum);
+            bool re = db.JoinMember(id,pw,name,email,pnum,pnum);
             return re;
         }
         public bool LoginIDCheck(string id)
