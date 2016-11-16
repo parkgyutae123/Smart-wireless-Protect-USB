@@ -103,7 +103,7 @@ namespace Service
         /// <param name="email"></param>
         /// <param name="pnum"></param>
         /// <returns></returns>
-        public bool JoinMember(string id, string pw, string name, string email, string pnum,string dnum)
+        public bool JoinMember(string id, string pw, string name, string email, string pnum, string dnum)
         {
             if (OverlapID(id) == false || OverlapPhoneNum(pnum) == false)
             {

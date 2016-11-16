@@ -25,9 +25,9 @@ namespace Service
             bool re = db.OverlapPhoneNum(pnum) ;
             return re;
         }
-        public bool JoinMember(string id, string pw, string name, string email, string pnum)
+        public bool JoinMember(string id, string pw, string name, string email, string pnum,string dnum)
         {
-            bool re = db.JoinMember(id,pw,name,email,pnum,pnum);
+            bool re = db.JoinMember(id,pw,name,email,pnum, dnum);
             return re;
         }
         public bool LoginIDCheck(string id)

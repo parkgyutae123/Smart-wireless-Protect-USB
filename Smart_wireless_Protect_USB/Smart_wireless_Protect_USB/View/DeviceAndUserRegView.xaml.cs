@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
+
 namespace Smart_wireless_Protect_USB.View
 {
     /// <summary>
@@ -9,7 +10,7 @@ namespace Smart_wireless_Protect_USB.View
     /// </summary>
     public partial class DeviceAndUserRegView : UserControl
     {
-        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+        SmartService.Service1Client client = new SmartService.Service1Client();   
         public DeviceAndUserRegView()
         {
             InitializeComponent();
@@ -18,7 +19,8 @@ namespace Smart_wireless_Protect_USB.View
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (client.JoinMember(IDTextBox.Text, PasswordBox.Password, NameTextBox.Text, EmailTextBox.Text, PhoneTextBox.Text))
+            
+            if (client.JoinMember(IDTextBox.Text, PasswordBox.Password, NameTextBox.Text, EmailTextBox.Text, PhoneTextBox.Text,UsbTextBox.Text))
             {
                 MessageBox.Show("성공");return;
             }

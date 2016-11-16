@@ -19,7 +19,7 @@ namespace Service
         bool OverlapPhoneNum(string pnum);
 
         [OperationContract]
-        bool JoinMember(string id, string pw, string name, string email, string pnum);
+        bool JoinMember(string id, string pw, string name, string email, string pnum , string dnum);
 
         [OperationContract]
         bool LoginIDCheck(string id);
