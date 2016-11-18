@@ -12,7 +12,7 @@ namespace Service
     /// </summary>
     class Project_DB
     {
-        static string conStr = @"Data Source=IS-LAB21\MGKIM1030;Initial Catalog=Smart Wireless Protect Key DB;Integrated Security=False;User ID=sa;Password=1234;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        static string conStr = @"Data Source=DESKTOP-ONT7D9O\MGKIM1030;Initial Catalog=Query Test;Integrated Security=True";
         SqlConnection scon = new SqlConnection(conStr);
 
         #region DB Singleton

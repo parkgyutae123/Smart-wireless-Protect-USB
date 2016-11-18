@@ -10,13 +10,13 @@ namespace Smart_wireless_Protect_USB
     class SendMail
     {
         String SMTPAddress = "smtp.gmail.com";//STMP서버주소
-        String SMTPid = "top1432@gmail.com";//계정 아이디
-        String SMTPpassword = "1q2w3e4r!@#$";//계정 비밀번호
+        String SMTPid = "rok109888@gmail.com";//계정 아이디
+        String SMTPpassword = "daejung10";//계정 비밀번호
         String Tmail = null;//받는사람 메일
 
-        String senderID = "USB_Lock";
+        String senderID = "rok109888@gmail.com";
         String SenderName = "메일인증";
-        String Tsub = "인증메일 입니다.";
+        String Tsub = "LOCK화면 인증번호 입니다.";
         public String Tbody { get; set; }
 
 
@@ -26,8 +26,8 @@ namespace Smart_wireless_Protect_USB
         /// <param name="tmail">받는사람 메일주소</param>
         public SendMail(String tmail)
         {
-            Tmail = tmail;
-            Tbody = RandomNum();
+            Tmail = tmail; 
+            Tbody = "사용자 인증 번호 : "+ RandomNum();
         }
 
         /// <summary>

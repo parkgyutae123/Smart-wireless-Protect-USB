@@ -23,11 +23,11 @@ namespace SendMail
         class SendMail
         {
             String SMTPAddress = "smtp.gmail.com";//STMP서버주소
-            String SMTPid = "top1432@gmail.com";//계정 아이디
-            String SMTPpassword = "1q2w3e4r!@#$";//계정 비밀번호
+            String SMTPid = "rok109888@gmail.com";//계정 아이디
+            String SMTPpassword = "daejung10";//계정 비밀번호
             String Tmail = null;//받는사람 메일
 
-            String senderID = "USB_Lock";
+            String senderID = "top1432@gmail.com";
             String SenderName = "메일인증";
             String Tsub = "인증메일 입니다.";
             public String Tbody { get; set; }
