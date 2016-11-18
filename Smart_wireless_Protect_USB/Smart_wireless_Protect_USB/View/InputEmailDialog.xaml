@@ -19,7 +19,7 @@
                  x:Name="userName"
                  />
             <TextBox wpf:HintAssist.Hint="등록한 이메일을 입력하세요." Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                 Margin="0 6 0 0"
+                 Margin="0,6,-0.2,0"
                  FontSize="18" 
                  x:Name="emailNumber"
                  />

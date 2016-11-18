@@ -63,16 +63,21 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
             string email;
             
-            DialogContent = new ProgressDialog();
+            DialogContent = inputEmailDialog;
             
             System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(3))
                 .ContinueWith((t, _) => IsDialogOpen = false, null,
                     TaskScheduler.FromCurrentSynchronizationContext());
 
-            client.CheckNameEmail(inputEmailDialog.userName.Text,inputEmailDialog.emailNumber.Text);
+            if (client.CheckNameEmail(inputEmailDialog.userName.Text, inputEmailDialog.emailNumber.Text) == false)
+            {
+                MessageBox.Show("등록되지않는 사용자 정보 입니다.");
+                return;
+            }
             
-            email = inputEmailDialog.userName.Text;
-            SendMail S = new SendMail("aksrb1030@naver.com");
+            email = inputEmailDialog.emailNumber.Text;
+
+            SendMail S = new SendMail(email);
             S.SendGmail();
 
 
@@ -117,6 +122,8 @@ namespace Smart_wireless_Protect_USB.ViewModel
         InputPhoneNumberDialog inputPhoneDialog = new InputPhoneNumberDialog();
         private void AcceptPhoneDialog(object obj)
         {
+            DialogContent = inputPhoneDialog;
+
             string pnum;
             
             string url = @"https://api.bluehouselab.com/smscenter/v1.0/sendsms";
@@ -124,7 +131,11 @@ namespace Smart_wireless_Protect_USB.ViewModel
             string apikey = "d748be0697a511e6871f0cc47a1fcfae";
 
             string AcceptNum = RandomNum();
-            client.CheckNamePhone(inputPhoneDialog.userName.Text,inputPhoneDialog.phoneNumber.Text);
+            if (client.CheckNamePhone(inputPhoneDialog.userName.Text, inputPhoneDialog.phoneNumber.Text) == false)
+            {
+                MessageBox.Show("등록되지않는 사용자 정보 입니다.");
+                return;
+            }
 
             pnum = inputPhoneDialog.phoneNumber.Text;
 
@@ -164,9 +175,9 @@ namespace Smart_wireless_Protect_USB.ViewModel
 
         private void OpenPhoneDialog(object obj)
         {
-            
-            
-            DialogContent = new InputPhoneNumberDialog();
+
+
+            DialogContent = inputPhoneDialog;
             IsDialogOpen = true;
         }
         /// <summary>
