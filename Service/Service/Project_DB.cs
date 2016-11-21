@@ -12,7 +12,7 @@ namespace Service
     /// </summary>
     class Project_DB
     {
-        static string conStr = @"Data Source=DESKTOP-ONT7D9O\MGKIM1030;Initial Catalog=Query Test;Integrated Security=True";
+        static string conStr = @"Data Source=IS-LAB21\MGKIM1030;Initial Catalog=Smart Wireless Protect Key DB;Persist Security Info=True;User ID=sa;Password=1234";
         SqlConnection scon = new SqlConnection(conStr);
 
         #region DB Singleton
@@ -55,7 +55,7 @@ namespace Service
                     }
                 }
             }
-            return true;
+            return false;
         }
         #endregion
 
@@ -89,7 +89,7 @@ namespace Service
                     }
                 }
             }
-            return true;
+            return false;
         }
         #endregion
 
@@ -161,7 +161,7 @@ namespace Service
                 }
                 scom.Connection.Close();
             }
-            return true;
+            return false;
         }
         #endregion
 
@@ -194,7 +194,7 @@ namespace Service
                 }
                 scom.Connection.Close();
             }
-            return true;
+            return false;
         }
         #endregion
 
